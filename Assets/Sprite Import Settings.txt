@@ -1,0 +1,4 @@
+TextureType: Sprite (2D and UI)
+Pixels Per Unit: 96
+Filter Mode: Point (no filter)
+Compression: None
