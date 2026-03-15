@@ -44,6 +44,9 @@ TagManager:
   - name: Ground
     uniqueID: 3082058931
     locked: 0
+  - name: Rooms
+    uniqueID: 1809800655
+    locked: 0
   - name: Objects
     uniqueID: 3622833709
     locked: 0

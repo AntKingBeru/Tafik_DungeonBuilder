@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 4598946664955298836}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -236,4 +236,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
   rb: {fileID: 1553499211157835279}
   moveAction: {fileID: 8785810521510474816, guid: 760cfbc490924a5429402330abad4326, type: 3}
-  moveSpeed: 2.5
+  moveSpeed: 1.5

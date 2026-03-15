@@ -23,7 +23,7 @@ public class DungeonManager : MonoBehaviour
         // ----- CORE ROOM POSITION -----
         
         var coreX = (dungeonWidth - coreSize.x) / 2;
-        const int coreY = 0;
+        const int coreY = 6;
         
         var coreOrigin = new Vector2Int(coreX, coreY);
 
@@ -32,7 +32,7 @@ public class DungeonManager : MonoBehaviour
         // ----- REVIVAL ROOM POSITION -----
         
         var revivalX = coreX - revivalSize.x;
-        const int revivalY = 0;
+        const int revivalY = 6;
         
         var revivalOrigin = new Vector2Int(revivalX, revivalY);
 

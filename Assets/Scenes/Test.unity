@@ -1261,7 +1261,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GridManager
   width: 50
   height: 50
-  woodChance: 0.25
+  woodChance: 0.01
   cellPrefab: {fileID: 6680139262188167997, guid: 02ae8952b2cd5bd478588219b3517dec, type: 3}
   tilesParent: {fileID: 1765540477}
 --- !u!114 &1989455664
