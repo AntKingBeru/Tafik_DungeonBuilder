@@ -181,7 +181,7 @@ public class BuildSystem : MonoBehaviour
             {
                 var pos = origin + new Vector2Int(x, y);
                 
-                GridManager.Instance.HighLightCell(pos, color);
+                GridManager.Instance.HighlightCell(pos, color);
                 
                 _highlightedCells.Add(pos);
             }

@@ -11,6 +11,7 @@ public class GridCursor : MonoBehaviour
 
     [Header("References")]
     [SerializeField] private Camera cam;
+    [SerializeField] private SpriteRenderer sr;
     
     [Header("Input")]
     [SerializeField] private InputActionReference pointAction;
@@ -19,6 +20,8 @@ public class GridCursor : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+        
+        SetMode(CursorMode.None);
     }
 
     private void OnEnable()
@@ -39,6 +42,9 @@ public class GridCursor : MonoBehaviour
 
     private void Update()
     {
+        if (Mode == CursorMode.None)
+            return;
+        
         UpdateCursorPosition();
         ClickedThisFrame = false;
     }
@@ -68,5 +74,8 @@ public class GridCursor : MonoBehaviour
     public void SetMode(CursorMode newMode)
     {
         Mode = newMode;
+        
+        if (sr)
+            sr.enabled = Mode != CursorMode.None;
     }
 }

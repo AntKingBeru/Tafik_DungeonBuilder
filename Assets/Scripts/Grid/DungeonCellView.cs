@@ -1,8 +1,11 @@
 using UnityEngine;
 
+[RequireComponent(typeof(SpriteRenderer))]
+[RequireComponent(typeof(BoxCollider2D))]
 public class DungeonCellView : MonoBehaviour
 {
     [SerializeField] private SpriteRenderer sr;
+    [SerializeField] private BoxCollider2D col;
 
     [Header("Sprites")]
     [SerializeField] private Sprite stoneSprite;
@@ -14,7 +17,6 @@ public class DungeonCellView : MonoBehaviour
     public void Initialize(DungeonCell cellData)
     {
         _cell = cellData;
-        
         UpdateVisual();
     }
 
@@ -26,15 +28,19 @@ public class DungeonCellView : MonoBehaviour
         if (_cell.IsCleared)
         {
             sr.sprite = clearedSprite;
-            return;
+            
+            if (col)
+                col.enabled = false;
         }
-
-        sr.sprite = _cell.ResourceType switch
+        else
         {
-            ResourceType.Stone => stoneSprite,
-            ResourceType.Wood => woodSprite,
-            _ => stoneSprite
-        };
+            sr.sprite = _cell.ResourceType == ResourceType.Stone
+                ? stoneSprite
+                : woodSprite;
+            
+            if (col)
+                col.enabled = true;
+        }
     }
 
     public void SetHighlight(Color color)

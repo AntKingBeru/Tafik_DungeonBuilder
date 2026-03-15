@@ -59,6 +59,8 @@ public class DungeonManager : MonoBehaviour
         );
         
         room.Initialize(origin);
+        
+        GridManager.Instance.RegisterRoom(room, origin, size);
 
         return room;
     }

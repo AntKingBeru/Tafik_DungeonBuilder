@@ -172,6 +172,13 @@ public class GridManager : MonoBehaviour
 
                 if (cell != null)
                     cell.Room = room;
+
+                if (_views.TryGetValue(pos, out var view))
+                {
+                    var col = view.GetComponent<BoxCollider2D>();
+                    if (col)
+                        col.enabled = false;
+                }
             }
         }
     }
@@ -180,7 +187,7 @@ public class GridManager : MonoBehaviour
     
     #region Highlight System
 
-    public void HighLightCell(Vector2Int pos, Color color)
+    public void HighlightCell(Vector2Int pos, Color color)
     {
         if (_views.TryGetValue(pos, out var view))
             view.SetHighlight(color);

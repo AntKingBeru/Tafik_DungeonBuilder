@@ -6,8 +6,11 @@ public class InputManager : MonoBehaviour
     public static InputManager Instance { get; private set; }
 
     [SerializeField] private InputActionAsset inputActions;
-    [SerializeField] private InputActionMap playerMap;
-    [SerializeField] private InputActionMap buildMap;
+    [SerializeField] private string playerMapName = "Player";
+    [SerializeField] private string buildMapName = "Build";
+    
+    private InputActionMap _playerMap;
+    private InputActionMap _buildMap;
     
     public InputActionAsset Actions => inputActions;
 
@@ -20,29 +23,32 @@ public class InputManager : MonoBehaviour
         }
 
         Instance = this;
+        
+        _playerMap = inputActions.FindActionMap(playerMapName);
+        _buildMap = inputActions.FindActionMap(buildMapName);
 
         EnablePlayer();
     }
 
     public void EnablePlayer()
     {
-        playerMap.Enable();
-        buildMap.Disable();
+        _playerMap.Enable();
+        _buildMap.Disable();
     }
     
     public void EnableBuild()
     {
-        buildMap.Enable();
-        playerMap.Disable();
+        _buildMap.Enable();
+        _playerMap.Disable();
     }
 
     public InputAction GetBuildAction(string action)
     {
-        return buildMap.FindAction(action);
+        return _buildMap.FindAction(action);
     }
 
     public InputAction GetPlayerAction(string action)
     {
-        return playerMap.FindAction(action);
+        return _playerMap.FindAction(action);
     }
 }
