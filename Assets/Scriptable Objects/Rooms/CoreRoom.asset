@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7457211b8dd3d584b94a0174baca204e, type: 3}
+  m_Name: CoreRoom
+  m_EditorClassIdentifier: Assembly-CSharp::RoomBlueprint
+  id: Core Room
+  size: {x: 3, y: 3}
+  prefab: {fileID: 238361878205866121, guid: 1f12c3d877ba3d24e87f01703603424e, type: 3}
+  hasTrapAnchors: 0
+  isCore: 1

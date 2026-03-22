@@ -7,24 +7,6 @@
             "id": "e0b5f4e9-4772-4f41-bf16-2cd2dfcc511a",
             "actions": [
                 {
-                    "name": "Move",
-                    "type": "Value",
-                    "id": "d4fee946-2d25-4d94-b9c6-81fa5457e5af",
-                    "expectedControlType": "Vector2",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": true
-                },
-                {
-                    "name": "BuildMode",
-                    "type": "Button",
-                    "id": "fe0d5591-14bc-4352-be1b-1ce0ede5d29b",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "Point",
                     "type": "Value",
                     "id": "5eb02a35-985b-4ecb-a673-248c72c793c0",
@@ -37,6 +19,24 @@
                     "name": "Click",
                     "type": "Button",
                     "id": "4c8dfffa-ea34-4f4d-8a09-21a1842a931c",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "Press",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Move",
+                    "type": "Value",
+                    "id": "d4fee946-2d25-4d94-b9c6-81fa5457e5af",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "BuildMode",
+                    "type": "Button",
+                    "id": "fe0d5591-14bc-4352-be1b-1ce0ede5d29b",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",

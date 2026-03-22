@@ -169,7 +169,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3681910940685700431}
-  - component: {fileID: 7686412195453357993}
   m_Layer: 0
   m_Name: RevivalRoom
   m_TagString: Untagged
@@ -195,20 +194,6 @@ Transform:
   - {fileID: 3391440289450154622}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7686412195453357993
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3129550899849835963}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 68b89b8b45312a148979f6559ebea50d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::RoomInstance
-  size: {x: 3, y: 3}
-  playerSpawnPoint: {fileID: 0}
 --- !u!1 &4193962632867711466
 GameObject:
   m_ObjectHideFlags: 0

@@ -103,10 +103,10 @@ TextureImporter:
       name: Enemy Fighter_0
       rect:
         serializedVersion: 2
-        x: 42
-        y: 10
-        width: 468
-        height: 580
+        x: 6
+        y: 0
+        width: 52
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
