@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c047302f185235044b442535ca3fd92e, type: 3}
+  m_Name: Room Menu Data
+  m_EditorClassIdentifier: Assembly-CSharp::BuildMenuData
+  rooms:
+  - {fileID: 11400000, guid: ed4c91b1b64beea4788d29e15b5360cb, type: 2}
+  - {fileID: 11400000, guid: cf09fdae7b72369479a37cd0ef895979, type: 2}
+  - {fileID: 11400000, guid: 499291cef2b9e46498c47d5b1925f8bb, type: 2}
+  - {fileID: 11400000, guid: bc24b0a62f048a148a5adac048b734ce, type: 2}
+  traps: []
+  upgrades: []

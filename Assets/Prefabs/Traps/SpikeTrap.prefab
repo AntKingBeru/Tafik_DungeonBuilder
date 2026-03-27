@@ -11,8 +11,6 @@ GameObject:
   - component: {fileID: 3710521508918004265}
   - component: {fileID: 828136360987085578}
   - component: {fileID: 3952794024828842377}
-  - component: {fileID: 8231711535893356369}
-  - component: {fileID: 2987443770857479446}
   m_Layer: 0
   m_Name: SpikeTrap
   m_TagString: Untagged
@@ -140,29 +138,3 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.0001, y: 0.0001}
   m_EdgeRadius: 0
---- !u!114 &8231711535893356369
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7204588662384713860}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6995bf01c4a82824b93e9b1dce8e69a9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::TrapTrigger
-  trapDamage: {fileID: 2987443770857479446}
---- !u!114 &2987443770857479446
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7204588662384713860}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ce15d8d4cbbae9428f37a26980e8fe6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::TrapDamage
-  damagePerSecond: 10

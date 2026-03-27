@@ -8,13 +8,13 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Grid
   - Water
   - UI
-  - 
-  - 
-  - 
-  - 
+  - Room
+  - Trap
+  - Player
+  - Resource
   - 
   - 
   - 
@@ -41,23 +41,23 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Ground
+  - name: Dungeon
     uniqueID: 3082058931
     locked: 0
-  - name: Rooms
+  - name: Grid
     uniqueID: 1809800655
     locked: 0
-  - name: Objects
+  - name: Room
     uniqueID: 3622833709
     locked: 0
-  - name: BuildPreview
+  - name: Trap
     uniqueID: 1370618931
     locked: 0
-  - name: Characters
+  - name: Player
     uniqueID: 1571307429
     locked: 0
   - name: UI
-    uniqueID: 3128655167
+    uniqueID: 3505172361
     locked: 0
   m_RenderingLayers:
   - Default

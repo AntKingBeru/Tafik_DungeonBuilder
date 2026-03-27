@@ -9,10 +9,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2672294597466639092}
-  m_Layer: 0
+  - component: {fileID: 7351641633716836989}
+  m_Layer: 6
   m_Name: PlayerSpawnPoint
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 3306451490063965843, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
   m_IsActive: 1
@@ -31,6 +32,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 7476335173839547629}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7351641633716836989
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 178463938138997562}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ced5df172e69eec4b9f6e6dec9d42083, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RoomSpawnPoint
+  type: 0
 --- !u!1 &213965625198341692
 GameObject:
   m_ObjectHideFlags: 0
@@ -42,7 +56,7 @@ GameObject:
   - component: {fileID: 5660910164612854331}
   - component: {fileID: 8289567034596969946}
   - component: {fileID: 557937256981383920}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Top Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -165,7 +179,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7476335173839547629}
-  m_Layer: 0
+  - component: {fileID: 6034908083469091411}
+  m_Layer: 6
   m_Name: CoreRoom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -191,6 +206,20 @@ Transform:
   - {fileID: 2672294597466639092}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6034908083469091411
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 238361878205866121}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3456de2f6243974bb79102ba78f45fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RoomInstance
+  spawnPoints:
+  - {fileID: 7351641633716836989}
 --- !u!1 &4450482659167629941
 GameObject:
   m_ObjectHideFlags: 0
@@ -200,11 +229,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6161405000319752561}
-  - component: {fileID: 2791509226280539170}
-  m_Layer: 0
+  - component: {fileID: 726585740899819215}
+  m_Layer: 6
   m_Name: CoreObject
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
   m_IsActive: 1
@@ -223,19 +252,42 @@ Transform:
   m_Children: []
   m_Father: {fileID: 7476335173839547629}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2791509226280539170
-MonoBehaviour:
+--- !u!58 &726585740899819215
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4450482659167629941}
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 43c99df852fb2004ea9f8fc766a7ce35, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Health
-  maxHealth: 100
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_Radius: 0.375
 --- !u!1 &4683718887290264132
 GameObject:
   m_ObjectHideFlags: 0
@@ -246,7 +298,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7240948136983620914}
   - component: {fileID: 6513089058476538255}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: RoomSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -313,8 +365,8 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 1809800655
-  m_SortingLayer: 2
+  m_SortingLayerID: -672133587
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: 21300000, guid: 344751340f62bc64c8fe102a34e6a71e, type: 3}
@@ -338,7 +390,7 @@ GameObject:
   - component: {fileID: 6516692286456272083}
   - component: {fileID: 1356669155342728438}
   - component: {fileID: 877190346722745635}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Right Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -461,7 +513,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8639894357301947409}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Colliders
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -498,7 +550,7 @@ GameObject:
   - component: {fileID: 2775495155355187355}
   - component: {fileID: 5939868734049643565}
   - component: {fileID: 1417852902726929661}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Left Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -623,7 +675,7 @@ GameObject:
   - component: {fileID: 8650702121761568836}
   - component: {fileID: 3699597595364798004}
   - component: {fileID: 8122415064113007100}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Bottom Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
