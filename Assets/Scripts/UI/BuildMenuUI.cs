@@ -21,9 +21,15 @@ public class BuildMenuUI : MonoBehaviour
     private void OnEnable()
     {
         ShowRooms();
-
+        
         ResourceManager.Instance.OnResourceChanged += UpdateButtonStates;
         UpdateButtonStates(ResourceManager.Instance.Stone, ResourceManager.Instance.Wood);
+    }
+    
+    private void OnDisable()
+    {
+        if (ResourceManager.Instance)
+            ResourceManager.Instance.OnResourceChanged -= UpdateButtonStates;
     }
 
     private void Update()

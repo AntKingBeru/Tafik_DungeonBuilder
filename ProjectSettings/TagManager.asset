@@ -13,9 +13,9 @@ TagManager:
   - UI
   - Room
   - Trap
+  - Entities
   - Player
   - Resource
-  - 
   - 
   - 
   - 
@@ -52,6 +52,9 @@ TagManager:
     locked: 0
   - name: Trap
     uniqueID: 1370618931
+    locked: 0
+  - name: Entities
+    uniqueID: 3066453293
     locked: 0
   - name: Player
     uniqueID: 1571307429

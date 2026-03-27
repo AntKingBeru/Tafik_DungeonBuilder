@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour
     [Header("References")]
     [SerializeField] private PlayerMovement movement;
     [SerializeField] private PlayerStateMachine stateMachine;
+    [SerializeField] private PlayerCarry carry;
     [SerializeField] private PlayerInteractor interactor; // Testing
     [SerializeField] private PlacementPreview previewPrefab; // Testing
 
@@ -124,6 +125,27 @@ public class PlayerController : MonoBehaviour
         {
             var clearPos = interactor.GetHoveredGridPosition();
             GridManager.Instance.ClearCell(clearPos);
+            return;
+        }
+        
+        var corpse = interactor.GetHoveredCorpse();
+
+        var revival = FindFirstObjectByType<RevivalController>();
+        
+        if (revival)
+            revival.TryRevive();
+        
+        if (corpse)
+        {
+            if (!carry.HasCorpse)
+            {
+                carry.PickUp(corpse);
+                return;
+            }
+        }
+        else if (carry.HasCorpse)
+        {
+            carry.Drop();
             return;
         }
         

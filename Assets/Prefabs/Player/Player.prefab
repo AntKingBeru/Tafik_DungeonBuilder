@@ -78,7 +78,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 1571307429
-  m_SortingLayer: 5
+  m_SortingLayer: 6
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: 21300000, guid: 174b450a03c3e4f47bb2ab9259d5501b, type: 3}
@@ -107,6 +107,7 @@ GameObject:
   - component: {fileID: 6137484193995926730}
   - component: {fileID: 8398671004124840586}
   - component: {fileID: 232511865520452712}
+  - component: {fileID: 2869409869057382631}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -246,7 +247,6 @@ MonoBehaviour:
   stateMachine: {fileID: 232511865520452712}
   interactor: {fileID: 6137484193995926730}
   previewPrefab: {fileID: -6337408669569282687, guid: 86c438effd925614ea7455022885debc, type: 3}
-  testRoom: {fileID: 11400000, guid: f09e75f3f43c7ef45ad9adb924fc67b8, type: 2}
 --- !u!114 &6137484193995926730
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -289,6 +289,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f84fa67d2bceb9c4d905e440ec58c34e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerStateMachine
+--- !u!114 &2869409869057382631
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4233945958869819430}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efc64b3a37e91874e9255e8e20090148, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerCarry
+  carryAnchor: {fileID: 6101247324109003639}
 --- !u!1 &8400639355570822463
 GameObject:
   m_ObjectHideFlags: 0
@@ -299,9 +312,9 @@ GameObject:
   m_Component:
   - component: {fileID: 6101247324109003639}
   m_Layer: 8
-  m_Name: DirectionPivot
+  m_Name: CarryPoint
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 7866945982896999795, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -314,7 +327,7 @@ Transform:
   m_GameObject: {fileID: 8400639355570822463}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

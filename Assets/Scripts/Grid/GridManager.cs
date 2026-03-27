@@ -42,8 +42,12 @@ public class GridManager : MonoBehaviour
     [SerializeField] private Transform roomsParent;
     
     private readonly Dictionary<Vector2Int, GridCell> _grid = new();
+    private readonly List<RoomInstance> _rooms = new();
     
+    public int Width => width;
+    public int Height => height;
     public float CellSize => cellSize;
+    public IReadOnlyList<RoomInstance> Rooms => _rooms;
 
     private void Awake()
     {
@@ -83,7 +87,7 @@ public class GridManager : MonoBehaviour
         
         var coreInstance = PlaceRoomInternal(coreCenter, coreRoom);
 
-        const int spacing = 3;
+        var spacing = coreRoom.size.x;
 
         PlaceRoomInternal(coreCenter + new Vector2Int(-spacing, 0), revivalRoom);
         PlaceRoomInternal(coreCenter + new Vector2Int(spacing, 0), barracksRoom);
@@ -154,12 +158,45 @@ public class GridManager : MonoBehaviour
     {
         return pos.x >= 0 && pos.y >= 0 && pos.x < width && pos.y < height;
     }
+
+    private void PrepareArea(Vector2Int origin, Vector2Int size)
+    {
+        for (var x = 0; x < size.x; x++)
+        {
+            for (var y = 0; y < size.y; y++)
+            {
+                var pos = origin + new Vector2Int(x, y);
+                
+                if (!IsInsideGrid(pos))
+                    continue;
+                
+                var cell = GetCell(pos);
+                
+                if (cell == null)
+                    continue;
+                
+                if (cell.OccupiedObject)
+                    Destroy(cell.OccupiedObject);
+                
+                var cleared = Instantiate(
+                    clearedCellPrefab,
+                    GridToWorld(pos),
+                    Quaternion.identity,
+                    cellsParent
+                );
+                
+                cell.Type = CellType.Cleared;
+                cell.IsOccupied = false;
+                cell.OccupiedObject = cleared;
+            }
+        }
+    }
     
     #endregion
     
     #region Validation
     
-    public bool CanPlaceRoom(Vector2Int origin, Vector2Int size)
+    public bool CanPlaceRoom(Vector2Int origin, Vector2Int size, bool ignoreBuildable = false)
     {
         for (var x = 0; x < size.x; x++)
         {
@@ -173,6 +210,9 @@ public class GridManager : MonoBehaviour
                 var cell = GetCell(pos);
                 
                 if (cell == null || !cell.IsBuildable())
+                    return false;
+
+                if (!ignoreBuildable && !cell.IsBuildable())
                     return false;
             }
         }
@@ -203,7 +243,10 @@ public class GridManager : MonoBehaviour
         
         var instance = room.GetComponent<RoomInstance>();
         if (instance)
-            instance.Initialize(data);
+        {
+            instance.Initialize(data, center, size);
+            _rooms.Add(instance);
+        }
 
         for (var x = 0; x < size.x; x++)
         {
@@ -227,9 +270,16 @@ public class GridManager : MonoBehaviour
             (size.x - 1) / 2,
             (size.y - 1) / 2
         );
+
+        Debug.Log($"Trying to place {data.name} ar {center}");
+        
+        PrepareArea(origin, size);
         
         if (!CanPlaceRoom(origin, size))
+        {
+            Debug.Log("FAILED PLACEMENT");
             return null;
+        }
         
         var roomGo = Instantiate(
             data.prefab,
@@ -240,7 +290,10 @@ public class GridManager : MonoBehaviour
         
         var instance = roomGo.GetComponent<RoomInstance>();
         if (instance)
-            instance.Initialize(data);
+        {
+            instance.Initialize(data, center, size);
+            _rooms.Add(instance);
+        }
 
         for (var x = 0; x < size.x; x++)
         {
