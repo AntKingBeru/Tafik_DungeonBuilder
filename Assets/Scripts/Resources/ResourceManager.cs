@@ -9,6 +9,9 @@ public class ResourceManager : MonoBehaviour
     public int Wood { get; private set; }
 
     public event Action<int, int> OnResourceChanged;
+    
+    public int maxStone = 100;
+    public int maxWood = 100;
 
     private void Awake()
     {
@@ -17,14 +20,14 @@ public class ResourceManager : MonoBehaviour
     
     public void AddStone(int amount)
     {
-        Stone += amount;
-        Notify();
+        Stone = Mathf.Min(Stone + amount, maxStone);
+        OnResourceChanged?.Invoke(Stone, Wood);
     }
 
     public void AddWood(int amount)
     {
-        Wood += amount;
-        Notify();
+        Wood = Mathf.Min(Wood + amount, maxWood);
+        OnResourceChanged?.Invoke(Stone, Wood);
     }
 
     public bool CanAfford(int stone, int wood)
@@ -40,12 +43,7 @@ public class ResourceManager : MonoBehaviour
         Stone -= stone;
         Wood -= wood;
 
-        Notify();
-        return true;
-    }
-    
-    private void Notify()
-    {
         OnResourceChanged?.Invoke(Stone, Wood);
+        return true;
     }
 }

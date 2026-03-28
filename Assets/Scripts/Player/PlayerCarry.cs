@@ -18,27 +18,19 @@ public class PlayerCarry : MonoBehaviour
         corpse.transform.SetParent(carryAnchor);
         corpse.transform.localPosition = Vector3.zero;
 
-        corpse.OnPickedUp();
+        corpse.OnPickedUp(carryAnchor);
     }
 
-    public void Drop()
+    public Corpse Drop()
     {
         if (!HasCorpse)
-            return;
+            return null;
+        
+        var corpse = _carriedCorpse;
 
-        if (_carriedCorpse)
-        {
-            _carriedCorpse.transform.SetParent(null);
-
-            var gridPos = GridManager.Instance.WorldToGrid(transform.position);
-            var worldPos = GridManager.Instance.GridToWorld(gridPos);
-
-            _carriedCorpse.transform.position = worldPos;
-            _carriedCorpse.OnDropped();
-        }
-
+        corpse.transform.SetParent(null);
         _carriedCorpse = null;
+
+        return corpse;
     }
-    
-    public Corpse GetCarriedCorpse() => _carriedCorpse;
 }

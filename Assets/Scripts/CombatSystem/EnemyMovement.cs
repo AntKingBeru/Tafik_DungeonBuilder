@@ -1,12 +1,19 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public class EnemyMovement : MonoBehaviour
 {
     [SerializeField] private float moveSpeed = 2f;
+    [SerializeField] private float repathInterval = 2f;
 
     private Vector2Int _currentGridPos;
     private Vector3 _targetWorldPos;
     private bool _isMoving;
+    
+    private List<Vector2Int> _currentPath;
+    private int _pathIndex;
+    
+    private float _repathTimer;
 
     private void Start()
     {
@@ -18,53 +25,74 @@ public class EnemyMovement : MonoBehaviour
     {
         if (_isMoving)
         {
-            transform.position = Vector3.MoveTowards(
-                transform.position,
-                _targetWorldPos,
-                moveSpeed * Time.deltaTime
-            );
-
-            if (Vector3.Distance(transform.position, _targetWorldPos) < 0.01f)
-            {
-                transform.position = _targetWorldPos;
-                _isMoving = false;
-            }
+            MoveAlongPath();
         }
         else
-            TryMoveRandom();
+            HandlePathing();
     }
 
-    private void TryMoveRandom()
+    private void HandlePathing()
     {
-        var directions = new[]
+        _repathTimer -= Time.deltaTime;
+
+        if (_repathTimer <= 0f)
         {
-            Vector2Int.up,
-            Vector2Int.down,
-            Vector2Int.left,
-            Vector2Int.right
-        };
-        
-        var dir = directions[Random.Range(0, directions.Length)];
-        var next = _currentGridPos + dir;
+            _repathTimer = repathInterval;
 
-        if (!GridManager.Instance.IsInsideGrid(next))
-            return;
-        
-        var cell = GridManager.Instance.GetCell(next);
+            var target = GetRandomRoomPosition();
+            
+            _currentPath = GridPathfinder.FindPath(
+                _currentGridPos,
+                target
+            );
+            
+            _pathIndex = 0;
+        }
 
-        if (cell == null)
-            return;
+        if (_currentPath is { Count: > 1 })
+        {
+            _pathIndex = 1;
+            MoveTo(_currentPath[_pathIndex]);
+        }
+    }
 
-        if (cell.Type != CellType.Room)
-            return;
-        
-        MoveTo(next);
+    private void MoveAlongPath()
+    {
+        transform.position = Vector3.MoveTowards(
+            transform.position,
+            _targetWorldPos,
+            moveSpeed * Time.deltaTime
+        );
+
+        if (Vector3.Distance(transform.position, _targetWorldPos) < 0.01f)
+        {
+            transform.position = _targetWorldPos;
+            _isMoving = false;
+            
+            _currentGridPos = GridManager.Instance.WorldToGrid(_targetWorldPos);
+            
+            _pathIndex++;
+            
+            if (_currentPath != null && _pathIndex < _currentPath.Count)
+                MoveTo(_currentPath[_pathIndex]);
+        }
     }
 
     private void MoveTo(Vector2Int gridPos)
     {
-        _currentGridPos = gridPos;
         _targetWorldPos = GridManager.Instance.GridToWorld(gridPos);
         _isMoving = true;
+    }
+
+    private Vector2Int GetRandomRoomPosition()
+    {
+        var rooms = GridManager.Instance.Rooms;
+        
+        if (rooms.Count == 0)
+            return _currentGridPos;
+        
+        var room = rooms[Random.Range(0, rooms.Count)];
+        
+        return room.GetRandomCellPosition();
     }
 }

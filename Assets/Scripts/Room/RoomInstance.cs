@@ -48,6 +48,14 @@ public class RoomInstance : MonoBehaviour
         
         return GridManager.Instance.GridToWorld(gridPos);
     }
+
+    public Vector2Int GetRandomCellPosition()
+    {
+        var offsetX = Random.Range(0, _size.x);
+        var offsetY = Random.Range(0, _size.y);
+        
+        return _origin + new Vector2Int(offsetX, offsetY);
+    }
     
     public Vector2Int GetCenter() => _center;
     public Vector2Int GetOrigin() => _origin;

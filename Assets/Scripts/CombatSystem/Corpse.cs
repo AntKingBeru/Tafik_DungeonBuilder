@@ -2,32 +2,16 @@ using UnityEngine;
 
 public class Corpse : MonoBehaviour
 {
-    private CorpseType _type;
-    private bool _isCarried;
+    public CorpseType Type { get; private set; }
 
     public void Initialize(CorpseType type)
     {
-        _type = type;
+        Type = type;
     }
 
-    public void OnPickedUp()
+    public void OnPickedUp(Transform parent)
     {
-        _isCarried = true;
-        
-        var col = GetComponent<Collider2D>();
-        if (col)
-            col.enabled = false;
+        transform.SetParent(parent);
+        transform.localPosition = Vector3.up * 0.5f;
     }
-
-    public void OnDropped()
-    {
-        _isCarried = false;
-        
-        var col = GetComponent<Collider2D>();
-        if (col)
-            col.enabled = true;
-    }
-    
-    public CorpseType GetCorpseType() => _type;
-    public bool IsCarried() => _isCarried;
 }

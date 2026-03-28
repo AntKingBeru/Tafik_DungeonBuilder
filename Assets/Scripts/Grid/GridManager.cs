@@ -191,6 +191,12 @@ public class GridManager : MonoBehaviour
             }
         }
     }
+
+    public bool IsWalkable(Vector2Int pos)
+    {
+        var cell = GetCell(pos);
+        return cell is { Type: CellType.Room };
+    }
     
     #endregion
     
