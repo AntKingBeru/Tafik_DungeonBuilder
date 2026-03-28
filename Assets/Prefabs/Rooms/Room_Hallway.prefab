@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7882609773244049267}
   - component: {fileID: 6719864557490781726}
   - component: {fileID: 6587949302203761779}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Anchor1
   m_TagString: Untagged
   m_Icon: {fileID: 4422084297763085224, guid: 0000000000000000d000000000000000, type: 0}
@@ -102,7 +102,7 @@ GameObject:
   - component: {fileID: 9056871176550640667}
   - component: {fileID: 959015078914496582}
   - component: {fileID: 4689268470292547725}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Anchor2
   m_TagString: Untagged
   m_Icon: {fileID: 4422084297763085224, guid: 0000000000000000d000000000000000, type: 0}
