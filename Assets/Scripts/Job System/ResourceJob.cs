@@ -2,12 +2,14 @@ using UnityEngine;
 
 public class ResourceJob : Job
 {
-    private readonly ResourceNode _node;
+    private ResourceNode _node;
     private bool _collected;
     
     public ResourceJob(ResourceNode node)
     {
         _node = node;
+        Priority = 40;
+        Position = node.transform.position;
     }
 
     public override bool Execute(Minion minion)

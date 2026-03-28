@@ -7,6 +7,8 @@ public class AttackJob : Job
     public AttackJob(Enemy target)
     {
         _target = target;
+        Priority = 100;
+        Position = target.transform.position;
     }
 
     public override bool Execute(Minion minion)

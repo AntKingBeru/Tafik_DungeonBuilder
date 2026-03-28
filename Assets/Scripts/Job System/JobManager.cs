@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Linq;
 using System.Collections.Generic;
 
 public class JobManager : MonoBehaviour
@@ -17,13 +18,19 @@ public class JobManager : MonoBehaviour
         _jobs.Add(job);
     }
 
-    public Job GetJob()
+    public void RemoveJob(Job job)
+    {
+        _jobs.Remove(job);
+    }
+
+    public Job GetBestJob(Vector3 requestedPos)
     {
         if (_jobs.Count == 0)
             return null;
 
-        var job = _jobs[0];
-        _jobs.RemoveAt(0);
-        return job;
+        return _jobs.
+            OrderByDescending(j => j.Priority)
+            .ThenBy(j => Vector2.Distance(requestedPos, j.Position))
+            .FirstOrDefault();
     }
 }

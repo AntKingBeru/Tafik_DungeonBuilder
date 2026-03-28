@@ -7,6 +7,8 @@ public class HaulCorpseJob : Job
     public HaulCorpseJob(Corpse corpse)
     {
         _corpse = corpse;
+        Priority = 70;
+        Position = corpse.transform.position;
     }
 
     public override bool Execute(Minion minion)

@@ -9,6 +9,7 @@ public class Enemy : MonoBehaviour, IDamageable
     private void Awake()
     {
         health.OnDeath += HandleDeath;
+        EnemyManager.Instance.Register(this);
     }
 
     private void OnDestroy()

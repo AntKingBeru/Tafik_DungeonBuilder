@@ -8,25 +8,21 @@ public class Minion : MonoBehaviour
     public MinionMovement Movement => movement;
 
     private Job _currentJob;
-    
-    private MinionState _state;
 
     private void Update()
     {
         if (_currentJob == null)
         {
-            AssignJob();
+            _currentJob = JobManager.Instance.GetBestJob(transform.position);
             return;
         }
         
         var done = _currentJob.Execute(this);
         
         if (done)
+        {
+            JobManager.Instance.RemoveJob(_currentJob);
             _currentJob = null;
-    }
-
-    private void AssignJob()
-    {
-        _currentJob = JobManager.Instance.GetJob();
+        }
     }
 }
