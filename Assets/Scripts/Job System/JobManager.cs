@@ -23,14 +23,12 @@ public class JobManager : MonoBehaviour
         _jobs.Remove(job);
     }
 
-    public Job GetBestJob(Vector3 requestedPos)
+    public Job GetBestJob(Minion minion)
     {
-        if (_jobs.Count == 0)
-            return null;
-
-        return _jobs.
-            OrderByDescending(j => j.Priority)
-            .ThenBy(j => Vector2.Distance(requestedPos, j.Position))
+        return _jobs
+            .Where (j => j.IsValid() && !j.IsReserved)
+            .OrderByDescending(j => j.Priority)
+            .ThenBy(j => Vector2.Distance(minion.transform.position, j.Position))
             .FirstOrDefault();
     }
 }

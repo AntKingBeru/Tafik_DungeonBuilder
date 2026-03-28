@@ -13,7 +13,18 @@ public class Minion : MonoBehaviour
     {
         if (_currentJob == null)
         {
-            _currentJob = JobManager.Instance.GetBestJob(transform.position);
+            var job = JobManager.Instance.GetBestJob(this);
+            
+            if (job != null && job.TryReserve(this))
+                _currentJob = job;
+
+            return;
+        }
+
+        if (!_currentJob.IsValid())
+        {
+            _currentJob.Release();
+            _currentJob = null;
             return;
         }
         

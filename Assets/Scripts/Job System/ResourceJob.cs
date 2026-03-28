@@ -44,4 +44,6 @@ public class ResourceJob : Job
 
         return false;
     }
+    
+    public override bool IsValid() => _node;  
 }

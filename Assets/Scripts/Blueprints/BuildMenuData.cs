@@ -4,6 +4,6 @@ using UnityEngine;
 public class BuildMenuData : ScriptableObject
 {
     public RoomData[] rooms;
-    public RoomData[] traps;
-    public RoomData[] upgrades;
+    public TrapData[] traps;
+    public ScriptableObject[] upgrades;
 }

@@ -18,10 +18,15 @@ public class AttackJob : Job
         
         var grid = GridManager.Instance.WorldToGrid(_target.transform.position);
         minion.Movement.MoveTo(grid);
-        
+
         if (Vector2.Distance(minion.transform.position, _target.transform.position) < 1f)
-            _target.TakeDamage(new DamageData(1, DamageType.Physical));
+        {
+            var combat = minion.GetComponent<Combat>();
+            combat.TryAttack(_target.GetComponent<IDamageable>());
+        }
 
         return false;
     }
+    
+    public override bool IsValid() => _target;
 }

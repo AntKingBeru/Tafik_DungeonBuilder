@@ -30,7 +30,7 @@ public class Enemy : MonoBehaviour, IDamageable
 
     private void SpawnCorpse(DamageData killingBlow)
     {
-        var corpseType = GetCorpseType(killingBlow.Type);
+        var corpseType = GetCorpseType(killingBlow.type);
         
         var gridPos = GridManager.Instance.WorldToGrid(transform.position);
         var worldPos = GridManager.Instance.GridToWorld(gridPos);

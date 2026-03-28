@@ -1,11 +1,12 @@
+[System.Serializable]
 public struct DamageData
 {
-    public int Amount;
-    public DamageType Type;
+    public int amount;
+    public DamageType type;
     
     public DamageData(int amount, DamageType type)
     {
-        Amount = amount;
-        Type = type;
+        this.amount = amount;
+        this.type = type;
     }
 }

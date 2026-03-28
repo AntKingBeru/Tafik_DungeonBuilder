@@ -16,7 +16,7 @@ public class EnemyHealth : MonoBehaviour
 
     public void TakeDamage(DamageData damage)
     {
-        _currentHealth -= damage.Amount;
+        _currentHealth -= damage.amount;
         
         if (_currentHealth <= 0)
             OnDeath?.Invoke(damage);
