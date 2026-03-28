@@ -2,30 +2,36 @@ using UnityEngine;
 
 public class MinionCarry : MonoBehaviour
 {
-    [SerializeField] private Transform carryAnchor;
+    private Corpse _corpse;
+    private ResourceType _type;
+    private int _amount;
 
-    private GameObject _visual;
-    
-    public bool IsCarrying => _visual;
+    public bool HasCorpse => _corpse;
+    public bool HasResource => _amount > 0;
 
-    public void PickUp(GameObject prefab)
+    public void PickUp(Corpse corpse)
     {
-        if (_visual)
-            return;
-
-        _visual = Instantiate(
-            prefab,
-            carryAnchor
-        );
-        _visual.transform.localPosition = Vector3.zero;
+        _corpse = corpse;
+        corpse.PickUp();
     }
 
-    public void Drop()
+    public Corpse Drop()
     {
-        if (!_visual)
-            return;
-        
-        Destroy(_visual);
-        _visual = null;
+        var c = _corpse;
+        _corpse = null;
+        return c;
+    }
+
+    public void PickUpResource(ResourceType type, int amount)
+    {
+        _type = type;
+        _amount = amount;
+    }
+
+    public (ResourceType, int) DropResource()
+    {
+        var result = (_type, _amount);
+        _amount = 0;
+        return result;
     }
 }

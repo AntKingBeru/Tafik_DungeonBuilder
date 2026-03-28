@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 1016a95590356d2468f094d6db9c6a42
+guid: 76ce815c1d258114095a1758f6b70437
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -212216176543080897
-    second: Hallway Horiznotal_0
+      213: 8058046796064503327
+    second: Corridor_Side_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,12 +100,12 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Hallway Horiznotal_0
+      name: Corridor_Side_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 288
+        width: 96
         height: 96
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: f3ede85038e0e0df0800000000000000
-      internalID: -212216176543080897
+      spriteID: f1636ee1edee3df60800000000000000
+      internalID: 8058046796064503327
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Hallway Horiznotal_0: -212216176543080897
+      Corridor_Side_0: 8058046796064503327
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

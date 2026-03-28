@@ -12,13 +12,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy_Fighter
       objectReference: {fileID: 0}
-    - target: {fileID: 4259254771388831029, guid: 5c0bbff2c1f2d214e800217754ab0801, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: e66d763d1753bf54288b5dc1dcf877c7, type: 3}
+    - target: {fileID: 6008187937218491990, guid: 5c0bbff2c1f2d214e800217754ab0801, type: 3}
+      propertyPath: damage
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6008187937218491990, guid: 5c0bbff2c1f2d214e800217754ab0801, type: 3}
+      propertyPath: attackCooldown
+      value: 1.2
+      objectReference: {fileID: 0}
     - target: {fileID: 6516025495448945264, guid: 5c0bbff2c1f2d214e800217754ab0801, type: 3}
       propertyPath: maxHealth
-      value: 20
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 7092436093364582366, guid: 5c0bbff2c1f2d214e800217754ab0801, type: 3}
       propertyPath: m_LocalPosition.x

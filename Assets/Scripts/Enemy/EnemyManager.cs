@@ -6,6 +6,8 @@ public class EnemyManager : MonoBehaviour
     public static EnemyManager Instance { get; private set; }
     
     private readonly List<Enemy> _enemies = new();
+    
+    public IReadOnlyList<Enemy> Enemies => _enemies;
 
     private void Awake()
     {
@@ -15,7 +17,6 @@ public class EnemyManager : MonoBehaviour
     public void Register(Enemy enemy)
     {
         _enemies.Add(enemy);
-        JobManager.Instance.AddJob(new AttackJob(enemy));
     }
 
     public void UnRegister(Enemy enemy)

@@ -2,13 +2,17 @@ using UnityEngine;
 
 public class ResourceNode : MonoBehaviour
 {
-    private void Start()
+    [SerializeField] private ResourceType type;
+    [SerializeField] private int amount = 10;
+
+    public bool HasResources => amount > 0;
+
+    public int Harvest(int value)
     {
-        JobManager.Instance.AddJob(new ResourceJob(this));
+        var taken = Mathf.Min(value, amount);
+        amount -= taken;
+        return taken;
     }
 
-    public void Harvest()
-    {
-        Destroy(gameObject);
-    }
+    public ResourceType GetResourceType() => type;
 }

@@ -12,13 +12,13 @@ public class PlayerCarry : MonoBehaviour
     {
         if (HasCorpse)
             return;
-        
+
         _carriedCorpse = corpse;
-        
+
         corpse.transform.SetParent(carryAnchor);
         corpse.transform.localPosition = Vector3.zero;
 
-        corpse.OnPickedUp(carryAnchor);
+        corpse.PickUp();
     }
 
     public Corpse Drop()

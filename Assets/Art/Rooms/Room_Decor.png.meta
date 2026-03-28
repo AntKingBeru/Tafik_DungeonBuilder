@@ -1,10 +1,52 @@
 fileFormatVersion: 2
-guid: 548b671d6434a0c40aacd803fec8b628
+guid: 85316e4f5ae9779439e91ae0bf4095ed
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -5934375421813954897
-    second: Hallway Vertical_0
+      213: -4101737139377906389
+    second: Room_Decor_0
+  - first:
+      213: -6954551683244464802
+    second: Room_Decor_1
+  - first:
+      213: -6875658277520112543
+    second: Room_Decor_2
+  - first:
+      213: -3641993631020131311
+    second: Room_Decor_3
+  - first:
+      213: 4812792303118123946
+    second: Room_Decor_4
+  - first:
+      213: -4117856221209591463
+    second: Room_Decor_5
+  - first:
+      213: -5364944311570137349
+    second: Room_Decor_6
+  - first:
+      213: -3003505631771492279
+    second: Room_Decor_7
+  - first:
+      213: 5870407353787841846
+    second: Room_Decor_8
+  - first:
+      213: -369602271931374138
+    second: Room_Decor_9
+  - first:
+      213: 6145393451136587482
+    second: Room_Decor_10
+  - first:
+      213: 2934191976333661984
+    second: Room_Decor_11
+  - first:
+      213: -4736220747832954189
+    second: Room_Decor_12
+  - first:
+      213: -4853959086626295868
+    second: Room_Decor_13
+  - first:
+      213: 983406918986904945
+    second: Room_Decor_14
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -46,7 +88,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -100,23 +142,45 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Hallway Vertical_0
+      name: Core_Bottom
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 96
-        height: 288
+        x: 67
+        y: 8
+        width: 90
+        height: 65
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: fa668fadefcd4ada0800000000000000
-      internalID: -5934375421813954897
+      spriteID: 9518baa859f6ad6c0800000000000000
+      internalID: -4117856221209591463
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Core_Top
+      rect:
+        serializedVersion: 2
+        x: 91
+        y: 73
+        width: 42
+        height: 73
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 27264c266e1a3d245a17dd5659d45ec9
+      internalID: 1509944016
       vertices: []
       indices: 
       edges: []
@@ -125,7 +189,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: c3f746fbeacc88541a5bcb3f8cdd4996
     internalID: 0
     vertices: []
     indices: 
@@ -135,7 +199,21 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Hallway Vertical_0: -5934375421813954897
+      Core_Bottom: -4117856221209591463
+      Core_Top: -4101737139377906389
+      Room_Decor_1: -6954551683244464802
+      Room_Decor_10: 6145393451136587482
+      Room_Decor_11: 2934191976333661984
+      Room_Decor_12: -4736220747832954189
+      Room_Decor_13: -4853959086626295868
+      Room_Decor_14: 983406918986904945
+      Room_Decor_2: -6875658277520112543
+      Room_Decor_3: -3641993631020131311
+      Room_Decor_4: 4812792303118123946
+      Room_Decor_6: -5364944311570137349
+      Room_Decor_7: -3003505631771492279
+      Room_Decor_8: 5870407353787841846
+      Room_Decor_9: -369602271931374138
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

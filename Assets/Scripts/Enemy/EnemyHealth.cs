@@ -1,7 +1,7 @@
 using UnityEngine;
 using System;
 
-public class EnemyHealth : MonoBehaviour
+public class EnemyHealth : MonoBehaviour, IDamageable
 {
     [SerializeField] private int maxHealth = 10;
 

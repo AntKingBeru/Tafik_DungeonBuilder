@@ -17,5 +17,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: cf09fdae7b72369479a37cd0ef895979, type: 2}
   - {fileID: 11400000, guid: 499291cef2b9e46498c47d5b1925f8bb, type: 2}
   - {fileID: 11400000, guid: bc24b0a62f048a148a5adac048b734ce, type: 2}
-  traps: []
+  traps:
+  - {fileID: 11400000, guid: a90e4635a359d564ebf060ce960bb1f5, type: 2}
+  - {fileID: 11400000, guid: 7baa67ff80cd0344792830562d3254b9, type: 2}
   upgrades: []

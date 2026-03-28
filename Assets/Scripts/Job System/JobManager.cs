@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public class JobManager : MonoBehaviour
 {
     public static JobManager Instance { get; private set; }
-    
+
     private readonly List<Job> _jobs = new();
 
     private void Awake()
@@ -18,17 +18,27 @@ public class JobManager : MonoBehaviour
         _jobs.Add(job);
     }
 
-    public void RemoveJob(Job job)
+    public Job GetAvailableJob()
+    {
+        return _jobs.FirstOrDefault(job => !job.IsReserved);
+    }
+
+    public void CompleteJob(Job job)
     {
         _jobs.Remove(job);
     }
-
-    public Job GetBestJob(Minion minion)
+    
+    public Job RequestJob(Minion minion)
     {
-        return _jobs
-            .Where (j => j.IsValid() && !j.IsReserved)
-            .OrderByDescending(j => j.Priority)
-            .ThenBy(j => Vector2.Distance(minion.transform.position, j.Position))
-            .FirstOrDefault();
+        foreach (var job in _jobs)
+        {
+            if (!job.IsReserved)
+            {
+                job.Reserve(minion);
+                return job;
+            }
+        }
+
+        return null;
     }
 }

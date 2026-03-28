@@ -7,15 +7,18 @@ public class Combat : MonoBehaviour
     [SerializeField] private DamageType damageType;
 
     private float _timer;
+    
+    public bool CanAttack => _timer <= 0f;
+
+    private void Update()
+    {
+        if (_timer > 0)
+            _timer -= Time.deltaTime;
+    }
 
     public void TryAttack(IDamageable target)
     {
-        if (target == null)
-            return;
-        
-        _timer -= Time.deltaTime;
-
-        if (_timer > 0)
+        if (target == null || !CanAttack)
             return;
         
         target.TakeDamage(new DamageData(damage, damageType));

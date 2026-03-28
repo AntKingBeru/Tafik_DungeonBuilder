@@ -124,6 +124,11 @@ public class GridManager : MonoBehaviour
         
         player.position = spawn.position;
     }
+
+    public RoomInstance GetCoreRoom()
+    {
+        return _rooms.Find(r => r.Data == coreRoom);
+    }
     
     #endregion
     
@@ -252,6 +257,7 @@ public class GridManager : MonoBehaviour
         {
             instance.Initialize(data, center, size);
             _rooms.Add(instance);
+            BuildTracker.Instance.RegisterRoomPlaced();
         }
 
         for (var x = 0; x < size.x; x++)
@@ -334,10 +340,10 @@ public class GridManager : MonoBehaviour
         switch (cell.Type)
         {
             case CellType.Stone:
-                ResourceManager.Instance.AddStone(1);
+                ResourceManager.Instance.Add(ResourceType.Stone, 1);
                 break;
             case CellType.Wood:
-                ResourceManager.Instance.AddWood(2);
+                ResourceManager.Instance.Add(ResourceType.Wood, 2);
                 break;
         }
 

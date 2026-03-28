@@ -4,28 +4,26 @@ using System.Collections.Generic;
 public class MinionManager : MonoBehaviour
 {
     public static MinionManager Instance { get; private set; }
+    
+    [SerializeField] private int baseMaxMinions = 5;
 
-    public int maxMinions = 10;
+    private readonly List<Minion> _minions = new();
+    
+    private int _bonusFromBarracks;
 
-    private int _currentCount;
+    public IReadOnlyList<Minion> Minions => _minions;
+    public int MaxMinions => baseMaxMinions + _bonusFromBarracks;
 
     private void Awake()
     {
         Instance = this;
     }
-
-    public bool CanSpawn()
+    
+    public void AddBarracksBonus(int amount)
     {
-        return _currentCount < maxMinions;
+        _bonusFromBarracks += amount;
     }
 
-    public void Register()
-    {
-        _currentCount++;
-    }
-
-    public void Unregister()
-    {
-        _currentCount--;
-    }
+    public void Register(Minion m) => _minions.Add(m);
+    public void Unregister(Minion m) => _minions.Remove(m);
 }

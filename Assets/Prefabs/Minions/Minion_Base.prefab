@@ -14,7 +14,9 @@ GameObject:
   - component: {fileID: 371253588092195107}
   - component: {fileID: 3200988509072279515}
   - component: {fileID: 3741172074638598525}
-  m_Layer: 0
+  - component: {fileID: 1423233737745664216}
+  - component: {fileID: 8357364099250183041}
+  m_Layer: 8
   m_Name: Minion_Base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -33,7 +35,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 3095495888521325872}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &5678299014116948117
@@ -81,8 +84,8 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 1571307429
-  m_SortingLayer: 6
+  m_SortingLayerID: -1228514003
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: 21300000, guid: c6b40b3c7808e494faeb6d456f33bbee, type: 3}
@@ -171,7 +174,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87fd805b7f676c946b8c0a321043e058, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Minion
-  movement: {fileID: 3741172074638598525}
 --- !u!114 &3741172074638598525
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -184,4 +186,62 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d22547c473836e4e9582f034f561a3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MinionMovement
-  moveSpeed: 1.5
+  speed: 2
+--- !u!114 &1423233737745664216
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2605103330375757875}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f5f535cb165327419d69d8036fce147, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MinionCarry
+--- !u!114 &8357364099250183041
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2605103330375757875}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e34514bdcea2fc4b9cb23b43379201e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Combat
+  attackCooldown: 1
+  damage: 1
+  damageType: 0
+--- !u!1 &8373744093724166536
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3095495888521325872}
+  m_Layer: 8
+  m_Name: CarryAnchor
+  m_TagString: Untagged
+  m_Icon: {fileID: 7866945982896999795, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3095495888521325872
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8373744093724166536}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.25, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 9007197670817958208}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

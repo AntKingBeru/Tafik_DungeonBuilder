@@ -15,6 +15,5 @@ MonoBehaviour:
   roomName: Core
   roomType: 0
   size: {x: 3, y: 3}
-  prefab: {fileID: 238361878205866121, guid: 1f12c3d877ba3d24e87f01703603424e, type: 3}
-  stoneCost: 0
-  woodCost: 0
+  prefab: {fileID: 8429726064101058608, guid: beb037422d1eb184eb8aa9bcb7d6e2d5, type: 3}
+  cost: []

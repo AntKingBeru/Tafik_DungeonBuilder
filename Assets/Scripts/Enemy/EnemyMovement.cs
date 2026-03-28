@@ -78,7 +78,7 @@ public class EnemyMovement : MonoBehaviour
         }
     }
 
-    private void MoveTo(Vector2Int gridPos)
+    public void MoveTo(Vector2Int gridPos)
     {
         _targetWorldPos = GridManager.Instance.GridToWorld(gridPos);
         _isMoving = true;

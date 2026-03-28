@@ -15,6 +15,9 @@ MonoBehaviour:
   roomName: Corridor
   roomType: 5
   size: {x: 1, y: 1}
-  prefab: {fileID: 0}
-  stoneCost: 2
-  woodCost: 2
+  prefab: {fileID: 6960765074671217468, guid: d06981b0d234b7348b64754b282d4eb8, type: 3}
+  cost:
+  - type: 0
+    amount: 2
+  - type: 1
+    amount: 2

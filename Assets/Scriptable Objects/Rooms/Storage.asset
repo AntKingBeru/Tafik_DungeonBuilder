@@ -15,6 +15,5 @@ MonoBehaviour:
   roomName: Storage
   roomType: 3
   size: {x: 3, y: 3}
-  prefab: {fileID: 5219705290274675233, guid: 579520bbb3097774e82af906e574b89d, type: 3}
-  stoneCost: 0
-  woodCost: 0
+  prefab: {fileID: 5958867301627236278, guid: 99c7ce4ac354be247929a6604726efc6, type: 3}
+  cost: []

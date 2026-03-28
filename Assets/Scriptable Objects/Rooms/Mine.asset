@@ -15,6 +15,9 @@ MonoBehaviour:
   roomName: Mine
   roomType: 4
   size: {x: 3, y: 3}
-  prefab: {fileID: 0}
-  stoneCost: 5
-  woodCost: 3
+  prefab: {fileID: 1866903207121642435, guid: ca777b1d87e994f418f314420b25558c, type: 3}
+  cost:
+  - type: 0
+    amount: 5
+  - type: 1
+    amount: 2

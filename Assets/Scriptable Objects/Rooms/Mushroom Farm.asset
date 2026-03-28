@@ -15,6 +15,9 @@ MonoBehaviour:
   roomName: Mushroom Farm
   roomType: 4
   size: {x: 3, y: 3}
-  prefab: {fileID: 0}
-  stoneCost: 3
-  woodCost: 5
+  prefab: {fileID: 848455461641273132, guid: e2e512903d8f81e42a3697104bafa4cc, type: 3}
+  cost:
+  - type: 0
+    amount: 2
+  - type: 1
+    amount: 5

@@ -2,48 +2,48 @@ using UnityEngine;
 
 public class ResourceJob : Job
 {
-    private ResourceNode _node;
-    private bool _collected;
-    
-    public ResourceJob(ResourceNode node)
+    private readonly ResourceNode _node;
+    private readonly StorageRoom _storage;
+
+    public ResourceJob(ResourceNode node, StorageRoom storage)
     {
         _node = node;
-        Priority = 40;
-        Position = node.transform.position;
+        _storage = storage;
     }
 
-    public override bool Execute(Minion minion)
+    public override void Execute(Minion minion)
     {
         if (!_node)
-            return true; // No node or job done
-
-        if (!_collected)
         {
-            var grid = GridManager.Instance.WorldToGrid(_node.transform.position);
-            minion.Movement.MoveTo(grid);
+            Complete();
+            return;
+        }
+        
+        var carry = minion.Carry;
+
+        if (!carry.HasResource)
+        {
+            minion.MoveTo(_node.transform.position);
 
             if (Vector2.Distance(minion.transform.position, _node.transform.position) < 0.5f)
             {
-                _node.Harvest();
-                _collected = true;
+                var amount = _node.Harvest(5);
+
+                if (amount > 0)
+                    carry.PickUpResource(_node.GetResourceType(), amount);
             }
         }
         else
         {
-            var drop = StorageRoom.Instance.DropPoint.position;
-            var grid = GridManager.Instance.WorldToGrid(drop);
-            
-            minion.Movement.MoveTo(grid);
+            minion.MoveTo(_storage.transform.position);
 
-            if (Vector2.Distance(minion.transform.position, drop) < 0.5f)
+            if (Vector2.Distance(minion.transform.position, _storage.transform.position) < 0.5f)
             {
-                StorageRoom.Instance.Store(1);
-                return true;
+                var (type, amount) = carry.DropResource();
+                _storage.Store(type, amount);
+
+                Complete();
             }
         }
-
-        return false;
     }
-    
-    public override bool IsValid() => _node;  
 }

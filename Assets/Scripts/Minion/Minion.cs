@@ -1,39 +1,39 @@
 using UnityEngine;
 
 [RequireComponent(typeof(MinionMovement))]
-public class Minion : MonoBehaviour
+[RequireComponent(typeof(Combat))]
+public class Minion : MonoBehaviour, IDamageable
 {
-    [SerializeField] private MinionMovement movement;
-    
-    public MinionMovement Movement => movement;
+    public MinionCarry Carry { get; private set; }
+
+    private MinionMovement _movement;
+    private Combat _combat;
 
     private Job _currentJob;
 
+    private void Awake()
+    {
+        _movement = GetComponent<MinionMovement>();
+        _combat = GetComponent<Combat>();
+        Carry = GetComponent<MinionCarry>();
+    }
+
     private void Update()
     {
-        if (_currentJob == null)
-        {
-            var job = JobManager.Instance.GetBestJob(this);
-            
-            if (job != null && job.TryReserve(this))
-                _currentJob = job;
+        _currentJob ??= JobManager.Instance.RequestJob(this);
 
-            return;
-        }
+        _currentJob?.Execute(this);
+    }
 
-        if (!_currentJob.IsValid())
-        {
-            _currentJob.Release();
-            _currentJob = null;
-            return;
-        }
-        
-        var done = _currentJob.Execute(this);
-        
-        if (done)
-        {
-            JobManager.Instance.RemoveJob(_currentJob);
-            _currentJob = null;
-        }
+    public void MoveTo(Vector3 pos) => _movement.MoveTo(pos);
+
+    public void Attack(Enemy enemy)
+    {
+        _combat.TryAttack(enemy);
+    }
+
+    public void TakeDamage(DamageData damage)
+    {
+        Destroy(gameObject);
     }
 }

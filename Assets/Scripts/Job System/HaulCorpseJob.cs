@@ -3,51 +3,40 @@ using UnityEngine;
 public class HaulCorpseJob : Job
 {
     private readonly Corpse _corpse;
-    private bool _pickedUp;
-    
-    public HaulCorpseJob(Corpse corpse)
+    private readonly RevivalDropZone _dropZone;
+
+    public HaulCorpseJob(Corpse corpse, RevivalDropZone dropZone)
     {
         _corpse = corpse;
-        Priority = 70;
-        Position = corpse.transform.position;
+        _dropZone = dropZone;
     }
 
-    public override bool Execute(Minion minion)
+    public override void Execute(Minion minion)
     {
         if (!_corpse)
-            return true; // Either no corpse or job done
-        
-        var carry = minion.GetComponent<MinionCarry>();
-
-        if (!_pickedUp)
         {
-            var grid = GridManager.Instance.WorldToGrid(_corpse.transform.position);
-            minion.Movement.MoveTo(grid);
+            Complete();
+            return;
+        }
+
+        if (!minion.Carry.HasCorpse)
+        {
+            minion.MoveTo(_corpse.transform.position);
 
             if (Vector2.Distance(minion.transform.position, _corpse.transform.position) < 0.5f)
             {
-                carry.PickUp(_corpse.VisualPrefab);
-                Object.Destroy(_corpse.gameObject);
-                _pickedUp = true;
+                minion.Carry.PickUp(_corpse);
             }
         }
         else
         {
-            var drop = RevivalRoom.Instance.DropPoint.position;
-            var grid = GridManager.Instance.WorldToGrid(drop);
-            
-            minion.Movement.MoveTo(grid);
-            
-            if (Vector2.Distance(minion.transform.position, drop) < 0.5f)
+            minion.MoveTo(_dropZone.transform.position);
+
+            if (Vector2.Distance(minion.transform.position, _dropZone.transform.position) < 0.5f)
             {
-                carry.Drop();
-                RevivalRoom.Instance.ProcessCorpse(_corpse.Type);
-                return true;
+                _dropZone.ReceiveCorpse(minion.Carry.Drop());
+                Complete();
             }
         }
-
-        return false;
-    }
-    
-    public override bool IsValid() => _corpse;   
+    } 
 }

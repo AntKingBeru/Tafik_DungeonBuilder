@@ -24,7 +24,7 @@ public class RoomInstance : MonoBehaviour
 
     public Transform GetSpawnPoint(SpawnPointType type)
     {
-        var point = spawnPoints.FirstOrDefault(p => p.type == type);
+        var point = spawnPoints.FirstOrDefault(p => p.Type == type);
         
         return !point ? null : point.transform;
     }
@@ -41,12 +41,10 @@ public class RoomInstance : MonoBehaviour
 
     public Vector3 GetRandomPositionInside()
     {
-        var x = Random.Range(0, _size.x);
-        var y = Random.Range(0, _size.y);
+        var x = Random.Range(_origin.x, _origin.x + _size.x);
+        var y = Random.Range(_origin.y, _origin.y + _size.y);
         
-        var gridPos = _origin + new Vector2Int(x, y);
-        
-        return GridManager.Instance.GridToWorld(gridPos);
+        return GridManager.Instance.GridToWorld(new Vector2Int(x, y));
     }
 
     public Vector2Int GetRandomCellPosition()
@@ -55,6 +53,11 @@ public class RoomInstance : MonoBehaviour
         var offsetY = Random.Range(0, _size.y);
         
         return _origin + new Vector2Int(offsetX, offsetY);
+    }
+
+    public Vector3 GetCenterWorld()
+    {
+        return GridManager.Instance.GridToWorld(_center);
     }
     
     public Vector2Int GetCenter() => _center;

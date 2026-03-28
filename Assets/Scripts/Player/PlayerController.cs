@@ -197,6 +197,12 @@ public class PlayerController : MonoBehaviour
     {
         _selectedRoom = room;
         _selectedTrap = null;
+
+        if (_preview)
+        {
+            _preview.SetSize(room.size);
+            _preview.ResetRotation();
+        }
     }
     
     public void SetSelectedTrap(TrapData trap)

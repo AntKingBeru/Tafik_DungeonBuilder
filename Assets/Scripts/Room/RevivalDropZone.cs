@@ -2,15 +2,10 @@ using UnityEngine;
 
 public class RevivalDropZone : MonoBehaviour
 {
+    [SerializeField] private RevivalRoom room;
+
     public void ReceiveCorpse(Corpse corpse)
     {
-        if (!corpse)
-            return;
-        
-        corpse.gameObject.SetActive(false);
-        
-        RevivalRoom.Instance.ReceiveCorpse(corpse);
-        
-        Destroy(corpse.gameObject);
+        room.Revive(corpse);
     }
 }

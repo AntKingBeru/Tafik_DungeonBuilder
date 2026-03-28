@@ -8,18 +8,19 @@ public class ResourceUI : MonoBehaviour
 
     private void Start()
     {
-        ResourceManager.Instance.OnResourceChanged += UpdateUI;
-        UpdateUI(ResourceManager.Instance.Stone, ResourceManager.Instance.Wood);
+        ResourceManager.Instance.OnResourcesChanged += UpdateUI;
+        UpdateUI();
     }
 
     private void OnDestroy()
     {
-        ResourceManager.Instance.OnResourceChanged -= UpdateUI;
+        if (ResourceManager.Instance)
+            ResourceManager.Instance.OnResourcesChanged -= UpdateUI;
     }
 
-    private void UpdateUI(int stone, int wood)
+    private void UpdateUI()
     {
-        stoneText.text = stone.ToString();
-        woodText.text = wood.ToString();
+        stoneText.text = ResourceManager.Instance.Get(ResourceType.Stone).ToString();
+        woodText.text = ResourceManager.Instance.Get(ResourceType.Wood).ToString();
     }
 }

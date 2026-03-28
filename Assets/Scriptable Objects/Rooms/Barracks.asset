@@ -15,6 +15,5 @@ MonoBehaviour:
   roomName: Barracks
   roomType: 2
   size: {x: 3, y: 3}
-  prefab: {fileID: 2135275152524133356, guid: a8442102495c6574289fc5bad984c084, type: 3}
-  stoneCost: 0
-  woodCost: 0
+  prefab: {fileID: 2142722566383948708, guid: 2a58da58fa3958147bb82fd65884ef28, type: 3}
+  cost: []

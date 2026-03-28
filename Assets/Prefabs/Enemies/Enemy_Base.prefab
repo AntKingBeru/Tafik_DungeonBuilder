@@ -15,7 +15,8 @@ GameObject:
   - component: {fileID: 8145811038383647656}
   - component: {fileID: 6516025495448945264}
   - component: {fileID: 5315009400652798315}
-  m_Layer: 8
+  - component: {fileID: 6008187937218491990}
+  m_Layer: 9
   m_Name: Enemy_Base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -173,6 +174,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
   health: {fileID: 6516025495448945264}
+  movement: {fileID: 5315009400652798315}
+  combat: {fileID: 6008187937218491990}
 --- !u!114 &6516025495448945264
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -200,3 +203,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyMovement
   moveSpeed: 1.5
   repathInterval: 2
+--- !u!114 &6008187937218491990
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1766756550541031775}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e34514bdcea2fc4b9cb23b43379201e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Combat
+  attackCooldown: 1
+  damage: 1
+  damageType: 0

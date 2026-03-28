@@ -1,28 +1,18 @@
-using UnityEngine;
-
 public abstract class Job
 {
-    public int Priority { get; protected set; }
-    public Vector2 Position { get; protected set; }
+    public bool IsReserved { get; private set; }
+    public Minion AssignedMinion { get; private set; }
 
-    public Minion ReservedBy { get; private set; }
-
-    public bool IsReserved => ReservedBy;
-
-    public bool TryReserve(Minion minion)
+    public void Reserve(Minion minion)
     {
-        if (IsReserved)
-            return false;
-        
-        ReservedBy = minion;
-        return true;
+        IsReserved = true;
+        AssignedMinion = minion;
     }
 
-    public void Release()
+    public void Complete()
     {
-        ReservedBy = null;
+        JobManager.Instance.CompleteJob(this);
     }
 
-    public abstract bool IsValid();
-    public abstract bool Execute(Minion minion);
+    public abstract void Execute(Minion minion);
 }

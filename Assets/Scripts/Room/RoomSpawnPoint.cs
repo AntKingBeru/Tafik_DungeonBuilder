@@ -2,5 +2,7 @@ using UnityEngine;
 
 public class RoomSpawnPoint : MonoBehaviour
 {
-    public SpawnPointType type;
+    [SerializeField] private SpawnPointType type;
+
+    public SpawnPointType Type => type;
 }

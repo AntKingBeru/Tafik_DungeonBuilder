@@ -2,13 +2,11 @@ using UnityEngine;
 
 public class TrapAnchor : MonoBehaviour
 {
-    private bool _isOccupied;
-    
-    public bool IsOccupied => _isOccupied;
+    public bool IsOccupied { get; private set; }
 
     public void PlaceTrap(GameObject trapPrefab, TrapData data)
     {
-        if (_isOccupied)
+        if (IsOccupied)
             return;
 
         var trap = Instantiate(
@@ -19,9 +17,10 @@ public class TrapAnchor : MonoBehaviour
         );
         
         var trapComp = trap.GetComponent<Trap>();
-        if (trapComp)
-            trapComp.Initialize(data);
+        trapComp.SetData(data);
+
+        IsOccupied = true;
         
-        _isOccupied = true;
+        TrapManager.Instance.RegisterTrap();
     }
 }

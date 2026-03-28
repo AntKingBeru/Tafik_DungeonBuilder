@@ -20,6 +20,8 @@ public class PlacementPreview : MonoBehaviour
         
         transform.position = GridManager.Instance.GridToWorld(center);
         
+        UpdateScale(rotatedSize);
+        
         _isValidPlacement = GridManager.Instance.CanPlaceRoom(_currentOrigin, rotatedSize);
 
         UpdateColor();
@@ -30,6 +32,17 @@ public class PlacementPreview : MonoBehaviour
         visual.color = _isValidPlacement ?
             new Color(0f, 1f, 0f , 0.3f) :
             new Color(1f, 0f, 0f , 0.3f);
+    }
+
+    private void UpdateScale(Vector2Int newSize)
+    {
+        var cellSize = GridManager.Instance.CellSize;
+
+        visual.transform.localScale = new Vector3(
+            newSize.x * cellSize,
+            newSize.y * cellSize,
+            1f
+        );
     }
 
     public void Rotate()
@@ -46,6 +59,12 @@ public class PlacementPreview : MonoBehaviour
     public void SetSize(Vector2Int newSize)
     {
         size = newSize;
+    }
+
+    public void ResetRotation()
+    {
+        _rotationIndex = 0;
+        transform.rotation = Quaternion.identity;
     }
     
     public bool CanPlace() => _isValidPlacement;

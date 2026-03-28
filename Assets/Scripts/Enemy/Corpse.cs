@@ -2,16 +2,12 @@ using UnityEngine;
 
 public class Corpse : MonoBehaviour
 {
-    public CorpseType Type { get; private set; }
+    [SerializeField] private CorpseType type;
 
-    public void Initialize(CorpseType type)
-    {
-        Type = type;
-    }
+    public CorpseType Type => type;
 
-    public void OnPickedUp(Transform parent)
+    public void PickUp()
     {
-        transform.SetParent(parent);
-        transform.localPosition = Vector3.up * 0.5f;
+        gameObject.SetActive(false);
     }
 }

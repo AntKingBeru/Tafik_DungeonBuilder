@@ -7,7 +7,8 @@ public class RoomData : ScriptableObject
     public RoomType roomType;
     public Vector2Int size;
     public GameObject prefab;
+
+    public ResourceData[] cost;
     
-    public int stoneCost;
-    public int woodCost;
+    public ResourceData[] Cost => cost;
 }

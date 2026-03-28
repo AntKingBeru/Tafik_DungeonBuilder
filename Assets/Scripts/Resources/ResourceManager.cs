@@ -1,14 +1,16 @@
 using UnityEngine;
 using System;
+using System.Linq;
+using System.Collections.Generic;
 
 public class ResourceManager : MonoBehaviour
 {
     public static ResourceManager Instance { get; private set; }
     
-    public int Stone { get; private set; }
-    public int Wood { get; private set; }
+    private readonly Dictionary<ResourceType, int> _resources = new();
+    private readonly Dictionary<ResourceType, int> _maxResources = new();
 
-    public event Action<int, int> OnResourceChanged;
+    public Action OnResourcesChanged;
     
     public int maxStone = 100;
     public int maxWood = 100;
@@ -16,34 +18,32 @@ public class ResourceManager : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+        
+        _resources[ResourceType.Stone] = 0;
+        _resources[ResourceType.Wood] = 0;
+
+        _maxResources[ResourceType.Stone] = 100;
+        _maxResources[ResourceType.Wood] = 100;
     }
     
-    public void AddStone(int amount)
+    public int Get(ResourceType type) => _resources[type];
+
+    public bool HasEnough(ResourceData[] cost)
     {
-        Stone = Mathf.Min(Stone + amount, maxStone);
-        OnResourceChanged?.Invoke(Stone, Wood);
+        return cost.All(c => _resources[c.type] >= c.amount);
     }
 
-    public void AddWood(int amount)
+    public void Spend(ResourceData[] cost)
     {
-        Wood = Mathf.Min(Wood + amount, maxWood);
-        OnResourceChanged?.Invoke(Stone, Wood);
+        foreach (var c in cost)
+            _resources[c.type] -= c.amount;
+        
+        OnResourcesChanged?.Invoke();
     }
 
-    public bool CanAfford(int stone, int wood)
+    public void Add(ResourceType type, int amount)
     {
-        return Stone >= stone && Wood >= wood;
-    }
-
-    public bool TrySpend(int stone, int wood)
-    {
-        if (!CanAfford(stone, wood))
-            return false;
-
-        Stone -= stone;
-        Wood -= wood;
-
-        OnResourceChanged?.Invoke(Stone, Wood);
-        return true;
+        _resources[type] = Mathf.Min(_resources[type] + amount, _maxResources[type]);
+        OnResourcesChanged?.Invoke();
     }
 }

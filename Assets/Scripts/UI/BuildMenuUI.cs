@@ -21,15 +21,15 @@ public class BuildMenuUI : MonoBehaviour
     private void OnEnable()
     {
         ShowRooms();
-        
-        ResourceManager.Instance.OnResourceChanged += UpdateButtonStates;
-        UpdateButtonStates(ResourceManager.Instance.Stone, ResourceManager.Instance.Wood);
+
+        ResourceManager.Instance.OnResourcesChanged += UpdateButtonStates;
+        UpdateButtonStates();
     }
-    
+
     private void OnDisable()
     {
         if (ResourceManager.Instance)
-            ResourceManager.Instance.OnResourceChanged -= UpdateButtonStates;
+            ResourceManager.Instance.OnResourcesChanged -= UpdateButtonStates;
     }
 
     private void Update()
@@ -53,13 +53,27 @@ public class BuildMenuUI : MonoBehaviour
         }
     }
 
-    private void UpdateButtonStates(int stone, int wood)
+    private void GenerateTrapButtons(TrapData[] traps)
+    {
+        foreach (Transform child in buttonContainer)
+            Destroy(child.gameObject);
+
+        _buttons.Clear();
+
+        foreach (var trap in traps)
+        {
+            var button = Instantiate(buttonPrefab, buttonContainer);
+            button.Initialize(trap, this);
+
+            _buttons.Add(button);
+        }
+    }
+
+    private void UpdateButtonStates()
     {
         foreach (var button in _buttons)
         {
-            var data = button.GetData();
-            var canAfford = stone >= data.stoneCost && wood >= data.woodCost;
-            
+            var canAfford = ResourceManager.Instance.HasEnough(button.GetCost());
             button.SetInteractable(canAfford);
         }
     }
@@ -70,9 +84,23 @@ public class BuildMenuUI : MonoBehaviour
 
         foreach (var button in _buttons)
         {
-            var isSelected = button.GetData() == room;
+            var isSelected = button.GetRoom() == room;
             button.SetSelected(isSelected);
-            
+
+            if (isSelected)
+                _selectedButton = button;
+        }
+    }
+
+    public void SelectTrap(TrapData trap)
+    {
+        player.SetSelectedTrap(trap);
+
+        foreach (var button in _buttons)
+        {
+            var isSelected = button.GetTrap() == trap;
+            button.SetSelected(isSelected);
+
             if (isSelected)
                 _selectedButton = button;
         }
@@ -82,17 +110,22 @@ public class BuildMenuUI : MonoBehaviour
     {
         currentCategory = category;
 
-        var data = category switch
+        switch (category)
         {
-            BuildCategory.Rooms => menuData.rooms,
-            BuildCategory.Traps => menuData.traps,
-            BuildCategory.Upgrades => menuData.upgrades,
-            _ => null
-        };
-        
-        GenerateButtons(data);
-        
-        UpdateButtonStates(ResourceManager.Instance.Stone, ResourceManager.Instance.Wood);
+            case BuildCategory.Rooms:
+                GenerateButtons(menuData.rooms);
+                break;
+
+            case BuildCategory.Traps:
+                GenerateTrapButtons(menuData.traps);
+                break;
+
+            case BuildCategory.Upgrades:
+                // Future
+                break;
+        }
+
+        UpdateButtonStates();
     }
 
     public void ShowRooms()

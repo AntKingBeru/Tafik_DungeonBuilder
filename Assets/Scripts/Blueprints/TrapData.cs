@@ -7,9 +7,11 @@ public class TrapData : ScriptableObject
     public GameObject prefab;
     
     public int damage;
+    public float range;
     public float cooldown;
     public DamageType damageType;
     
-    public int stoneCost;
-    public int woodCost;
+    public ResourceData[] cost;
+    
+    public ResourceData[] Cost => cost;
 }

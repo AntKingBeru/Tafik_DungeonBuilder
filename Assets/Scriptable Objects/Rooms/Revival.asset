@@ -15,6 +15,5 @@ MonoBehaviour:
   roomName: Altar
   roomType: 1
   size: {x: 3, y: 3}
-  prefab: {fileID: 3129550899849835963, guid: ee2c41f7c91b9614b9da6ca791af5089, type: 3}
-  stoneCost: 0
-  woodCost: 0
+  prefab: {fileID: 551329075046441987, guid: 717fe5a9a51149643a7c7230b6b61dc8, type: 3}
+  cost: []

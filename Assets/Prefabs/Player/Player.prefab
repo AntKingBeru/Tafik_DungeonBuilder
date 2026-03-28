@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3649646319165971302}
   - component: {fileID: 2159261114618040239}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: Visual
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -104,11 +104,11 @@ GameObject:
   - component: {fileID: 3591721070170349337}
   - component: {fileID: 4093654096017371316}
   - component: {fileID: 7568869429420150583}
-  - component: {fileID: 6137484193995926730}
   - component: {fileID: 8398671004124840586}
   - component: {fileID: 232511865520452712}
+  - component: {fileID: 6137484193995926730}
   - component: {fileID: 2869409869057382631}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -241,26 +241,13 @@ MonoBehaviour:
   moveAction: {fileID: -6857541870383022151, guid: 760cfbc490924a5429402330abad4326, type: 3}
   toggleModeAction: {fileID: -6214087672325882365, guid: 760cfbc490924a5429402330abad4326, type: 3}
   cancelAction: {fileID: 3257516466950209325, guid: 760cfbc490924a5429402330abad4326, type: 3}
-  rotateAction: {fileID: 4159619881920053473, guid: 760cfbc490924a5429402330abad4326, type: 3}
   confirmAction: {fileID: 3635368052893052440, guid: 760cfbc490924a5429402330abad4326, type: 3}
+  rotateAction: {fileID: 4159619881920053473, guid: 760cfbc490924a5429402330abad4326, type: 3}
   movement: {fileID: 8398671004124840586}
   stateMachine: {fileID: 232511865520452712}
   interactor: {fileID: 6137484193995926730}
+  carry: {fileID: 2869409869057382631}
   previewPrefab: {fileID: -6337408669569282687, guid: 86c438effd925614ea7455022885debc, type: 3}
---- !u!114 &6137484193995926730
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4233945958869819430}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1878b6ed4967c9d4dbce7fe1d749b5cc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerInteractor
-  interactionRange: 2
-  cam: {fileID: 0}
 --- !u!114 &8398671004124840586
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -289,6 +276,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f84fa67d2bceb9c4d905e440ec58c34e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerStateMachine
+--- !u!114 &6137484193995926730
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4233945958869819430}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1878b6ed4967c9d4dbce7fe1d749b5cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerInteractor
+  cam: {fileID: 0}
 --- !u!114 &2869409869057382631
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -311,7 +311,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6101247324109003639}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: CarryPoint
   m_TagString: Untagged
   m_Icon: {fileID: 7866945982896999795, guid: 0000000000000000d000000000000000, type: 0}

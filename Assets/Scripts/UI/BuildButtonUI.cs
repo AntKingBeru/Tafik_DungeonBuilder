@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System.Text;
 
 public class BuildButtonUI : MonoBehaviour
 {
@@ -16,22 +17,58 @@ public class BuildButtonUI : MonoBehaviour
     [SerializeField] private Color disabledColor = Color.gray;
 
     private RoomData _roomData;
+    private TrapData _trapData;
     private BuildMenuUI _menu;
+
+    private ResourceData[] _cost;
 
     public void Initialize(RoomData data, BuildMenuUI menu)
     {
         _roomData = data;
+        _trapData = null;
         _menu = menu;
 
+        _cost = data.cost;
+
         nameText.text = data.roomName;
-        costText.text = $"S: {data.stoneCost} W: {data.woodCost}";
+        costText.text = FormatCost(data.Cost);
         
         button.onClick.AddListener(OnClicked);
     }
 
+    public void Initialize(TrapData data, BuildMenuUI menu)
+    {
+        _trapData = data;
+        _roomData = null;
+        _menu = menu;
+        
+        _cost = data.cost;
+
+        nameText.text = data.trapName;
+        costText.text = FormatCost(data.Cost);
+        
+        button.onClick.AddListener(OnClicked);
+    }
+
+    private string FormatCost(ResourceData[] cost)
+    {
+        if (cost == null || cost.Length == 0)
+            return "Free";
+
+        var sb = new StringBuilder();
+        
+        foreach (var c in cost)
+            sb.Append($"{c.type}: {c.amount}");
+
+        return sb.ToString();
+    }
+
     private void OnClicked()
     {
-        _menu.SelectRoom(_roomData);
+        if (_roomData)
+            _menu.SelectRoom(_roomData);
+        else if (_trapData)
+            _menu.SelectTrap(_trapData);
     }
     
     public void SetSelected(bool selected)
@@ -42,8 +79,12 @@ public class BuildButtonUI : MonoBehaviour
     public void SetInteractable(bool canAfford)
     {
         button.interactable = canAfford;
-        background.color = canAfford ? background.color : disabledColor;
+
+        if (!canAfford)
+            background.color = disabledColor;
     }
     
-    public RoomData GetData() => _roomData;
+    public ResourceData[] GetCost() => _cost;
+    public RoomData GetRoom() => _roomData;
+    public TrapData GetTrap() => _trapData;
 }

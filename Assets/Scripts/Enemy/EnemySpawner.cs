@@ -1,66 +1,86 @@
 using UnityEngine;
-using System.Collections.Generic;
+using System.Collections;
 using System.Linq;
 
 public class EnemySpawner : MonoBehaviour
 {
-    [SerializeField] private List<GameObject> enemyPrefabs;
-    [SerializeField] private int spawnCount = 3;
+    public static EnemySpawner Instance { get; private set; }
+    
+    [SerializeField] private GameObject[] enemyPrefabs;
+    [SerializeField] private float timeBetweenWaves = 10f;
+    [SerializeField] private int baseEnemiesPerWave = 3;
+    [SerializeField] private int maxWaves = 10;
+
+    private int _waveIndex;
+
+    private void Awake()
+    {
+        Instance = this;
+    }
 
     private void Start()
     {
-        SpawnEnemies();
+        StartCoroutine(WaveLoop());
     }
 
-    private void SpawnEnemies()
+    private IEnumerator WaveLoop()
     {
-        var edgeRooms = GetFurthestRooms();
+        while (_waveIndex < maxWaves)
+        {
+            yield return new WaitForSeconds(timeBetweenWaves);
 
-        if (edgeRooms.Count == 0)
+            if (!CanSpawn())
+                continue;
+
+            yield return SpawnWave();
+        }
+    }
+
+    private bool CanSpawn()
+    {
+        return GridManager.Instance.Rooms.Count >= 7
+               && TrapManager.Instance.TotalTrapsPlaced >= 2;
+    }
+
+    private IEnumerator SpawnWave()
+    {
+        _waveIndex++;
+        
+        var count = baseEnemiesPerWave + _waveIndex * 2;
+        
+        yield return SpawnEnemies(count);
+    }
+
+    private IEnumerator SpawnEnemies(int count)
+    {
+        for (var i = 0; i < count; i++)
+        {
+            SpawnSingle();
+            yield return new WaitForSeconds(0.5f);
+        }
+    }
+
+    private void SpawnSingle()
+    {
+        var room = GetSpawnRoom();
+        if (!room)
             return;
 
-        for (var i = 0; i < spawnCount; i++)
-        {
-            var room = edgeRooms[Random.Range(0, edgeRooms.Count)];
-            var spawnPos = room.GetRandomPositionInside();
+        var prefab = enemyPrefabs[Random.Range(0, enemyPrefabs.Length)];
 
-            var prefab = enemyPrefabs[Random.Range(0, enemyPrefabs.Count)];
-            Instantiate(
-                prefab,
-                spawnPos,
-                Quaternion.identity
-            );
-        }
+        Instantiate(
+            prefab,
+            room.GetRandomPositionInside(),
+            Quaternion.identity
+        );
     }
 
-    private List<RoomInstance> GetFurthestRooms()
+    private RoomInstance GetSpawnRoom()
     {
-        var rooms = GridManager.Instance.Rooms;
+        var valid = GridManager.Instance.Rooms
+            .Where(r => r.Data.roomType == RoomType.Hallway)
+            .ToList();
 
-        if (rooms.Count == 0)
-            return new List<RoomInstance>();
-
-        var dungeonCenter = new Vector2(
-            GridManager.Instance.Width / 2f,
-            GridManager.Instance.Height / 2f
-        );
-
-        var maxDistance = 0f;
-        var distances = new Dictionary<RoomInstance, float>();
-
-        foreach (var room in rooms)
-        {
-            var center = room.GetCenter();
-            var dist = Vector2.Distance(center, dungeonCenter);
-
-            distances[room] = dist;
-            
-            if (dist > maxDistance)
-                maxDistance = dist;
-        }
-
-        const float tolerance = 0.5f;
-
-        return (from pair in distances where pair.Value >= maxDistance - tolerance select pair.Key).ToList();
+        return valid.Count == 0 ? null : valid[Random.Range(0, valid.Count)];
     }
 }
