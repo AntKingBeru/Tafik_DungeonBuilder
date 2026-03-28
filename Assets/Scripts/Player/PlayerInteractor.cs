@@ -14,26 +14,26 @@ public class PlayerInteractor : MonoBehaviour
 
     public TrapAnchor GetHoveredAnchor()
     {
-        var hit = RaycastMouse();
-        return hit.collider ? hit.collider.GetComponent<TrapAnchor>() : null;
+        var col = RaycastMouse();
+        return col ? col.GetComponent<TrapAnchor>() : null;
     }
 
     public Corpse GetHoveredCorpse()
     {
-        var hit = RaycastMouse();
-        return hit.collider ? hit.collider.GetComponent<Corpse>() : null;
+        var col = RaycastMouse();
+        return col ? col.GetComponent<Corpse>() : null;
     }
 
     public RevivalDropZone GetHoveredDropZone()
     {
-        var hit = RaycastMouse();
-        return hit.collider ? hit.collider.GetComponent<RevivalDropZone>() : null;
+        var col = RaycastMouse();
+        return col ? col.GetComponent<RevivalDropZone>() : null;
     }
 
-    private RaycastHit2D RaycastMouse()
+    private Collider2D RaycastMouse()
     {
         var world = GetMouseWorldPosition();
-        return Physics2D.Raycast(world, Vector2.zero);
+        return Physics2D.OverlapPoint(world);
     }
 
     private Vector3 GetMouseWorldPosition()

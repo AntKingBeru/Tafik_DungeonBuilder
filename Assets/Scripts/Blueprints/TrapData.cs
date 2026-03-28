@@ -4,6 +4,7 @@ using UnityEngine;
 public class TrapData : ScriptableObject
 {
     public string trapName;
+    public Vector2 size = Vector2.one;
     public GameObject prefab;
     
     public int damage;
