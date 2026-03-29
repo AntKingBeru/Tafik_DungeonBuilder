@@ -39,7 +39,7 @@ public class EnemySpawner : MonoBehaviour
     private bool CanSpawn()
     {
         return GridManager.Instance.Rooms.Count >= 7
-               && TrapManager.Instance.TotalTrapsPlaced >= 2;
+               && TrapManager.Instance.TotalTrapsPlaced >= 4;
     }
 
     private IEnumerator SpawnWave()

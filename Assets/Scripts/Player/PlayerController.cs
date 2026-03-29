@@ -174,7 +174,17 @@ public class PlayerController : MonoBehaviour
 
     private void HandlePreview()
     {
-        if (stateMachine.CurrentMode != PlayerMode.Build || !_selectedRoom)
+        var mode = stateMachine.CurrentMode;
+
+        if (mode != PlayerMode.Build && mode != PlayerMode.BuildTrap)
+        {
+            if (_preview.gameObject.activeSelf)
+                _preview.gameObject.SetActive(false);
+            
+            return;
+        }
+        
+        if (!_selectedRoom && !_selectedTrap)
         {
             if (_preview.gameObject.activeSelf)
                 _preview.gameObject.SetActive(false);
@@ -198,17 +208,15 @@ public class PlayerController : MonoBehaviour
         _selectedRoom = room;
         _selectedTrap = null;
 
-        if (_preview)
-        {
-            _preview.SetSize(room.size);
-            _preview.ResetRotation();
-        }
+        _preview.SetRoom(room);
     }
     
     public void SetSelectedTrap(TrapData trap)
     {
         _selectedRoom = null;
         _selectedTrap = trap;
+        
+        _preview.SetTrap(trap);
     }
     
     #endregion
