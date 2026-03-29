@@ -613,7 +613,7 @@ MonoBehaviour:
   - {fileID: 6596999379887486460, guid: 34a7265fbc17d78449bfaee9cd6bc037, type: 3}
   timeBetweenWaves: 10
   baseEnemiesPerWave: 3
-  maxWaves: 3
+  maxWaves: 1
 --- !u!1 &497402400
 GameObject:
   m_ObjectHideFlags: 0
@@ -3104,7 +3104,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1000, y: 150}
+  m_SizeDelta: {x: 500, y: 100}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1977389857
 MonoBehaviour:

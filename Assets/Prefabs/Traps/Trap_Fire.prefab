@@ -24,6 +24,10 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1184098490607136514, guid: 4c054bd2a8373224a8be6d0677fd282f, type: 3}
+      propertyPath: attackCooldown
+      value: 0.25
+      objectReference: {fileID: 0}
     - target: {fileID: 3710521508918004265, guid: 4c054bd2a8373224a8be6d0677fd282f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

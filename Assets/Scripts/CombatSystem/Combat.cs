@@ -22,6 +22,7 @@ public class Combat : MonoBehaviour
             return;
         
         target.TakeDamage(new DamageData(damage, damageType));
+        Debug.Log($"Dealt {damage} {damageType} to {((MonoBehaviour)target).name}");
         _timer = attackCooldown;
     }
 }
