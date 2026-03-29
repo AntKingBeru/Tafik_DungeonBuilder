@@ -14,7 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BuildMenuData
   rooms:
   - {fileID: 11400000, guid: ed4c91b1b64beea4788d29e15b5360cb, type: 2}
-  - {fileID: 11400000, guid: cf09fdae7b72369479a37cd0ef895979, type: 2}
   - {fileID: 11400000, guid: 499291cef2b9e46498c47d5b1925f8bb, type: 2}
   - {fileID: 11400000, guid: bc24b0a62f048a148a5adac048b734ce, type: 2}
   traps:

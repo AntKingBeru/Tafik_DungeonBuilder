@@ -186,7 +186,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d22547c473836e4e9582f034f561a3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MinionMovement
-  speed: 2
+  speed: 0.5
 --- !u!114 &1423233737745664216
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -59,6 +59,11 @@ public class RoomInstance : MonoBehaviour
     {
         return GridManager.Instance.GridToWorld(_center);
     }
+
+    public CoreHealth GetCoreHealth()
+    {
+        return GetComponentInChildren<CoreHealth>();
+    }
     
     public Vector2Int GetCenter() => _center;
     public Vector2Int GetOrigin() => _origin;

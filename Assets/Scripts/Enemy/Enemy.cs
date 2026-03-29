@@ -9,7 +9,7 @@ public class Enemy : MonoBehaviour, IDamageable
     [SerializeField] private EnemyMovement movement;
     [SerializeField] private Combat combat;
 
-    private Minion _currentTarget;
+    private IDamageable _currentTarget;
 
     private void Awake()
     {
@@ -44,10 +44,13 @@ public class Enemy : MonoBehaviour, IDamageable
 
     private void HandleTargeting()
     {
-        if (_currentTarget)
+        if (_currentTarget != null)
         {
             combat.TryAttack(_currentTarget);
-            movement.MoveTo(GridManager.Instance.WorldToGrid(_currentTarget.transform.position));
+            var targetPos = ((MonoBehaviour) _currentTarget).transform.position;
+            var gridPos = GridManager.Instance.WorldToGrid(targetPos);
+            
+            movement.MoveTo(gridPos);
             return;
         }
 
@@ -62,7 +65,12 @@ public class Enemy : MonoBehaviour, IDamageable
         var core = GridManager.Instance.GetCoreRoom();
 
         if (core)
-            movement.MoveTo(GridManager.Instance.WorldToGrid(core.GetCenterWorld()));
+        {
+            var coreHealth = core.GetCoreHealth();
+
+            if (coreHealth)
+                _currentTarget = coreHealth;
+        }
     }
 
     private void HandleDeath(DamageData killingBlow)
