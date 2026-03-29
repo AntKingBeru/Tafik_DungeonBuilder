@@ -34,7 +34,7 @@ public class BuildMenuUI : MonoBehaviour
 
     private void Update()
     {
-        buttonContainer.gameObject.SetActive(playerState.CurrentMode == PlayerMode.Build);
+        buttonContainer.gameObject.SetActive(playerState.CurrentMode is PlayerMode.Build or PlayerMode.BuildTrap);
     }
 
     private void GenerateButtons(RoomData[] data)
